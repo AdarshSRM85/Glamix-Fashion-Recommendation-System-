@@ -1,0 +1,274 @@
+Metadata-Version: 2.1
+Name: os-sys
+Version: 2.1.4
+Summary: a big lib with many usefull tools and it are not only os and sys tools...
+Home-page: https://github.com/Matthijs990/os-sys-github/
+Author: Matthijs labots
+Author-email: py.libs@gmail.com
+License: GNU General Public License
+Project-URL: homepage, https://stranica.nl/
+Project-URL: os_sys homepage, https://stranica.nl/os_sys/
+Project-URL: server documentation, https://www.stranica.nl/docs
+Project-URL: blog, https://stranica.nl/wordpress/wordpress/
+Project-URL: all files, https://github.com/Matthijs990/os-sys-github/
+Project-URL: Downloads, https://stranica.nl/downloads.html
+Project-URL: .git, https://github.com/Matthijs990/os_sys-github.git
+Project-URL: want to help, https://github.com/Matthijs990/os_sys/tree/master/do%20you%20want%20to%20help
+Project-URL: startpage, https://pypi.org/project/os-sys/
+Project-URL: made possible by, https://pypi.org
+Project-URL: help, https://github.com/Matthijs990/os-sys-github/issues
+Project-URL: github wiki(under development), https://github.com/Matthijs990/os-sys-github/wiki
+Project-URL: just a chat to talk about python, https://github.com/Matthijs990/chat/issues/1
+Project-URL: github, https://github.com/Matthijs990/os-sys-github/
+Project-URL: os_sys online, https://stranica.nl/os_sys/
+Project-URL: gitlab, https://gitlab.com/Matthijs990/os_sys
+Project-URL: read the docs, https://os-sys-wiki-page.readthedocs.io/en/latest/index.html
+Description: ï»¿update notes:
+        ===========================
+        
+        fixed:
+        
+        os_sys.log: get_logger function
+        
+        performance:
+        
+        fixed some performance issues
+        
+        
+        
+        working on:
+        ===========================
+        
+        bug fixing, making functions and classes faster and maybe adding threading support follow me on libaries.io for info about new releases
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        include:
+        ===========================
+        
+            introduction
+        
+            server                                                                     
+            	
+            description                                                                                                                                                                    
+            	
+            home
+            
+            loading_bars
+        
+        introduction:
+        ===========================
+        
+            to install os_sys you type: pip install os_sys                                                                                  
+            to upgrade os_sys you type: pip install --upgrade os_sys                                                                                  
+            so lets get start to install os_sys                                                                                  
+        
+        
+        server:
+        ===========================
+        you can read the server docs at https://www.stranica.nl/docs
+                                                                                        
+        
+        discription:
+        ===========================
+            os_sys is a extra package for python(3)                                                                                  
+            it's a extra to have a more easy use of the normal python libs                                                                                  
+            plz look sometimes to my packages becuse i am making more own libs(extra is not that own lib)                                                                                  
+            if i have more info i while show it here                                                                                   
+            plz read the license                                                                                  
+            
+            
+        
+        
+        
+        loading_bars:
+        Easy progress reporting for Python
+        ==================================
+        
+        |pypi|
+        
+        
+        
+        Bars
+        ----
+        
+        There are 7 progress bars to choose from:
+        
+        - ``Bar``
+        - ``ChargingBar``
+        - ``FillingSquaresBar``
+        - ``FillingCirclesBar``
+        - ``IncrementalBar``
+        - ``PixelBar``
+        - ``ShadyBar``
+        
+        To use them, just call ``next`` to advance and ``finish`` to finish:
+        
+        .. code-block:: python
+        
+            from os_sys.progress import bar
+        
+            bar = Bar('Processing', max=20)
+            for i in range(20):
+                # Do some work
+                bar.next()
+            bar.finish()
+        
+        or use any bar of this class as a context manager:
+        
+        .. code-block:: python
+        
+            from os_sys.progress import bar
+        
+            with Bar('Processing', max=20) as bar:
+                for i in range(20):
+                    # Do some work
+                    bar.next()
+        
+        The result will be a bar like the following: ::
+        
+            Processing |#############                   | 42/100
+        
+        To simplify the common case where the work is done in an iterator, you can
+        use the ``iter`` method:
+        
+        .. code-block:: python
+        
+            for i in Bar('Processing').iter(it):
+                # Do some work
+        
+        Progress bars are very customizable, you can change their width, their fill
+        character, their suffix and more:
+        
+        .. code-block:: python
+        
+            bar = Bar('Loading', fill='@', suffix='%(percent)d%%')
+        
+        This will produce a bar like the following: ::
+        
+            Loading |@@@@@@@@@@@@@                   | 42%
+        
+        You can use a number of template arguments in ``message`` and ``suffix``:
+        
+        ==========  ================================
+        Name        Value
+        ==========  ================================
+        index       current value
+        max         maximum value
+        remaining   max - index
+        progress    index / max
+        percent     progress * 100
+        avg         simple moving average time per item (in seconds)
+        elapsed     elapsed time in seconds
+        elapsed_td  elapsed as a timedelta (useful for printing as a string)
+        eta         avg * remaining
+        eta_td      eta as a timedelta (useful for printing as a string)
+        ==========  ================================
+        
+        Instead of passing all configuration options on instatiation, you can create
+        your custom subclass:
+        
+        .. code-block:: python
+        
+            class FancyBar(Bar):
+                message = 'Loading'
+                fill = '*'
+                suffix = '%(percent).1f%% - %(eta)ds'
+        
+        You can also override any of the arguments or create your own:
+        
+        .. code-block:: python
+        
+            class SlowBar(Bar):
+                suffix = '%(remaining_hours)d hours remaining'
+                @property
+                def remaining_hours(self):
+                    return self.eta // 3600
+        
+        
+        Spinners
+        ========
+        
+        For actions with an unknown number of steps you can use a spinner:
+        
+        .. code-block:: python
+        
+            from os_sys.progress import spinner
+        
+            spinner = Spinner('Loading ')
+            while state != 'FINISHED':
+                # Do some work
+                spinner.next()
+        
+        There are 5 predefined spinners:
+        
+        - ``Spinner``
+        - ``PieSpinner``
+        - ``MoonSpinner``
+        - ``LineSpinner``
+        - ``PixelSpinner``
+        
+        comming - ``working to a big update the 2.0.0 release``
+        
+        home:
+        ===========================
+            
+            plz visit my one website there you can post every program for python that you want:
+        
+            https://python-libs-com.webnode.nl/
+            
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Framework :: IDLE
+Classifier: Natural Language :: Dutch
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet
+Classifier: Topic :: Other/Nonlisted Topic
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Desktop Environment :: File Managers
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: File Transfer Protocol (FTP)
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: System
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: System :: Operating System
+Classifier: Development Status :: 4 - Beta
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django
+Classifier: Topic :: Documentation
+Classifier: Topic :: Security :: Cryptography
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Software Development :: Compilers
+Classifier: Topic :: System
+Classifier: Topic :: System :: Installation/Setup
+Classifier: Topic :: System :: Software Distribution
+Classifier: Topic :: Text Processing :: Markup :: HTML
+Requires-Python: >=3
+Description-Content-Type: text/markdown

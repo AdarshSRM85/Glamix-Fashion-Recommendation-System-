@@ -1,0 +1,28 @@
+[console_scripts]
+editor = edit.__init__:call
+ins = ins.__main__:_main
+os_sys = os_sys.__main__:main
+os_sys-admin = os_sys.commands:run
+os_sys-admin-run = os_sys.commands:test
+os_sys-console = os_sys.__main__:main
+os_sys-devserver = os_sys.server:run
+os_sys-download-setup_script = os_sys.commands:download_zip
+os_sys-easy-install = os_sys.commands:install
+os_sys-easy-installer = os_sys.commands:install
+os_sys-easy-packages-installer = os_sys.commands:install
+os_sys-if_not_work-write_new_scripts = os_sys.commands:init
+os_sys-installer = os_sys.commands:install
+os_sys-py_install-install_local_files = os_sys.py_install:install_local_files
+os_sys-py_install-installer-auto-install = os_sys.py_install.commands:auto_install
+os_sys-re-init-os_sys = os_sys.commands:init
+os_sys-re_installer = os_sys.commands:re_install
+os_sys-run-py_check = os_sys.commands:run_py_check
+os_sys-server-admin = server.core.management:execute_from_command_line
+os_sys-setup = os_sys.commands:setup_os_sys1
+os_sys-setup_data-writer = os_sys.commands:init
+os_sys-text-editor = os_sys.commands:make_text
+os_sys-updater = os_sys.commands:update
+os_sys-wheel-builder = os_sys.wheel_build:main
+os_sys-wheel_console = os_sys.wheel_build:main
+server-admin = server.core.management:execute_from_command_line
+
